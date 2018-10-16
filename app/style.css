@@ -1,0 +1,123 @@
+@media screen and (min-width: 600px) {
+  #app {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 1rem;
+  margin: 1rem;
+  border: 2px solid #eee;
+  border-radius: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+  form {
+    width: calc(50% - 4rem - 4px);
+  }
+}
+
+#nombre {
+  width: 90vw;
+  margin-left: 5vw;
+}
+
+@media screen and (min-width: 600px) {
+  #nombre {
+    width: 50vw;
+    margin-left: 25vw;
+  }
+}
+
+.input-field {
+  width: 100%;
+}
+
+textarea,
+button {
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  resize: vertical;
+}
+
+ul,
+ol {
+  padding-inline-start: 1rem;
+}
+
+#contRecetas {
+  width: 100%;
+  list-style: none;
+}
+
+@media screen and (min-width: 600px) {
+  #contRecetas {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
+
+.receta {
+  width: calc(100% - 4rem - 4px);
+  padding: 1rem;
+  margin: 1rem;
+  border: 2px solid #eee;
+  border-radius: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+  .receta {
+    width: calc(100% / 2 - 4rem - 4px);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .receta {
+    width: calc(100% / 3 - 4rem - 4px);
+  }
+}
+
+input {
+  border: 0;
+  border-bottom: 2px solid #111;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+input:focus {
+  outline: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+button {
+  background-color: #fff;
+  color: #111;
+  border: 2px solid #111;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  margin-bottom: 0.5rem;
+}
+
+button:hover {
+  background-color: #111;
+  color: #eee;
+}
+
+.danger {
+  background-color: #ff4136;
+  color: #111;
+}

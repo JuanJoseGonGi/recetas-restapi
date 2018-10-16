@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Recetas REST API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="app">
+
+    <form id="formCrear" @submit.prevent="crearReceta">
+      <h2>Crear nueva receta</h2>
+      <div class="input-field">
+        <label for="txtNombreCrear">Nombre</label>
+        <input type="text" id="txtNombreCrear" v-model="crear.nombre" required>
+      </div>
+      <div class="input-field">
+        <label for="txtDescCrear">Descripción</label>
+        <textarea type="text" id="txtDescCrear" v-model="crear.descripcion" required></textarea>
+      </div>
+      <button type="button" @click="addIngrCrear">Agregar ingrediente</button>
+      <ul id="contIngrCrear" v-if="crear.ingredientes && crear.ingredientes.length">
+        <h3>Ingredientes</h3>
+        <li v-for="ingrediente, index in crear.ingredientes">
+          <input type="text" required v-model="crear.ingredientes[index]">
+          <button type="button" class="danger" @click="$delete(crear.ingredientes, index)">Eliminar</button>
+        </li>
+      </ul>
+      <button type="button" @click="addPasoCrear">Agregar paso</button>
+      <ol id="contPasosCrear" v-if="crear.pasos && crear.pasos.length">
+        <h3>Pasos</h3>
+        <li v-for="paso, index in crear.pasos">
+          <input type="text" required v-model="crear.pasos[index]">
+          <button type="button" class="danger" @click="$delete(crear.pasos, index)">Eliminar</button>
+        </li>
+      </ol>
+      <button type="submit">Crear</button>
+    </form>
+
+    <form id="formEditar" @submit.prevent="editarReceta">
+      <h2>Editar una receta</h2>
+      <div class="input-field">
+        <label for="txtNombreEditar">Nombre</label>
+        <input type="text" id="txtNombreEditar" v-model="editar.nombre" required>
+      </div>
+      <div class="input-field">
+        <label for="txtDescEditar">Descripción</label>
+        <textarea type="text" id="txtDescEditar" v-model="editar.descripcion" required></textarea>
+      </div>
+      <button type="button" @click="addIngrEditar">Agregar ingrediente</button>
+      <ul id="contIngrEditar" v-if="editar.ingredientes && editar.ingredientes.length">
+        <h3>Ingredientes</h3>
+        <li v-for="ingrediente, index in editar.ingredientes">
+          <input type="text" required v-model="editar.ingredientes[index]">
+          <button type="button" class="danger" @click="$delete(editar.ingredientes, index)">Eliminar</button>
+        </li>
+      </ul>
+      <button type="button" @click="addPasoEditar">Agregar paso</button>
+      <ol id="contPasosEditar" v-if="editar.pasos && editar.pasos.length">
+        <h3>Pasos</h3>
+        <li v-for="paso, index in editar.pasos">
+          <input type="text" required v-model="editar.pasos[index]">
+          <button type="button" class="danger" @click="$delete(editar.pasos, index)">Eliminar</button>
+        </li>
+      </ol>
+      <button type="submit">Editar</button>
+    </form>
+
+    <input type="text" v-model="nombre" placeholder="Escribe un nombre para filtrar" id="nombre">
+    <h2 v-if="errado">Ocurrió un error al tratar de recuperar la receta</h2>
+    <h2 v-else-if="cargando">Cargando...</h2>
+    <ul v-else id="contRecetas">
+      <li v-for="receta in recetas" class="receta">
+        <h2>{{receta.nombre}}</h2>
+        <p>{{receta.descripcion}}</p>
+        <ul v-if="receta.ingredientes && receta.ingredientes.length">
+          <h3>Ingredientes</h3>
+          <li v-for="ingrediente in receta.ingredientes">{{ingrediente}}</li>
+        </ul>
+        <ol v-if="receta.pasos && receta.pasos.length">
+          <h3>Pasos</h3>
+          <li v-for="paso in receta.pasos">{{paso}}</li>
+        </ol>
+        <button type="button" @click="fillEdit(receta)">Editar</button>
+        <button type="button" class="danger" @click="delReceta(receta)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
